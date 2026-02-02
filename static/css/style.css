@@ -1,0 +1,258 @@
+/* Universal reset for margin, padding, and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif; /* Font family for the entire page */
+  line-height: 1.6; /* Sets line height for better readability */
+  background-color: #ffffff; /* Sets white background for contrast */
+  color: #333333; /* Dark text color for readability */
+}
+
+/* Header styling */
+header {
+  background-color: #333; /* Dark background for the header */
+  padding: 20px 0; /* Padding around header */
+}
+
+nav ul {
+  display: flex; /* Flex layout for the navigation links */
+  justify-content: center; /* Center the navigation items */
+  list-style: none; /* Removes bullets from list */
+}
+
+nav li {
+  margin: 0 15px; /* Space between each link */
+}
+
+nav a {
+  color: #fff; /* White text for the links */
+  text-decoration: none; /* Removes underline from links */
+  font-size: 18px; /* Font size for navigation links */
+  font-weight: bold; /* Bold font for navigation links */
+}
+
+nav a:hover {
+  color: #00b894; /* Hover color for links */
+}
+
+/* Hero section styling */
+.hero {
+  background: url('hero-image.jpg') no-repeat center center/cover; /* Hero section background image */
+  color: white; /* Text color for the hero section */
+  text-align: center; /* Centers the text */
+  padding: 100px 20px; /* Adds padding for spacing */
+}
+
+.hero h1 {
+  font-size: 36px; /* Larger font for the main heading */
+  margin-bottom: 20px; /* Space below the heading */
+  font-weight: bold; /* Bold font for the main heading */
+}
+
+.hero p {
+  font-size: 20px; /* Font size for the paragraph */
+  margin-bottom: 30px; /* Adds space below the paragraph */
+}
+
+.cta-btn {
+  background-color: #00b894; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Removes the border */
+  padding: 12px 30px; /* Button padding */
+  font-size: 18px; /* Button font size */
+  cursor: pointer; /* Changes the cursor to a pointer */
+  border-radius: 5px; /* Rounded corners for the button */
+  text-transform: uppercase; /* Uppercase text for the button */
+}
+
+.cta-btn:hover {
+  background-color: #009e7f; /* Hover effect for button */
+}
+
+.cta-btn:focus {
+  outline: 3px solid #00b894; /* Outline for accessibility when button is focused */
+}
+
+/* About section styling */
+.about {
+  background-color: #f4f8f7; /* Light greenish background for the about section */
+  padding: 50px 20px; /* Adds padding for the about section */
+}
+
+.about h2 {
+  font-size: 28px; /* Font size for the about section heading */
+  margin-bottom: 30px; /* Adds space below the heading */
+  text-align: center; /* Centers the heading */
+  font-weight: bold; /* Bold font for the heading */
+}
+
+.about-details {
+  display: flex; /* Flexbox layout for the about section */
+  justify-content: space-between; /* Space out the content */
+  align-items: center; /* Centers the items vertically */
+  max-width: 1100px; /* Limit the width of the content */
+  margin: 0 auto; /* Centers the content */
+}
+
+.about-img {
+  width: 45%; /* Sets the width of the image */
+  border-radius: 8px; /* Adds rounded corners to the image */
+  alt: "Green tree with digital design representing sustainability"; /* Describes the image for screen readers */
+}
+
+.about-text {
+  width: 50%; /* Sets the width of the text */
+  font-size: 16px; /* Font size for the about text */
+  line-height: 1.8; /* Line height for better readability */
+  color: #555; /* Slightly lighter text color for contrast */
+}
+
+/* accessible focus ring */
+.cta-btn:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: calc(var(--btn-radius) - 1px);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn { transition: none; }
+}
+
+/* ---- Tablet breakpoint (less than ~1024px) ---- */
+@media (max-width: 1024px) {
+  .about-details{
+    gap: var(--container-gap-sm);
+    padding: 16px;
+  }
+
+  .about-img{
+    flex-basis: 42%;
+    max-width: 440px;
+  }
+
+  .about-text{
+    font-size: clamp(15px, 1.3vw, 17px);
+  }
+}
+
+/* ---- Original mobile breakpoint: improved (max-width: 768px) ----
+   - stack columns vertically
+   - reduce paddings
+   - use fluid widths and clamping
+   - make CTA full-width (optionally) and bigger tap area
+*/
+@media (max-width: 768px) {
+  .about-details {
+    flex-direction: column;           /* stack image and text vertically */
+    align-items: center;              /* center content */
+    text-align: center;               /* center text for narrow screens */
+    gap: 20px;
+    padding: 14px;
+  }
+
+  /* scale down image but keep a minimum for legibility */
+  .about-img {
+    width: min(88%, 520px);           /* fluid width but not wider than desktop max */
+    max-width: 520px;
+    margin-bottom: 0;                 /* spacing handled by gap */
+  }
+
+  /* text becomes single-column and narrower for comfortable reading */
+  .about-text {
+    width: min(92%, 760px);           /* prevents extremely long lines on small tablets */
+    font-size: clamp(15px, 2.2vw, 17px);
+    text-align: left;                 /* prefer left-aligned for paragraphs on larger mobile */
+  }
+
+  /* hero adjustments for mobile */
+  .hero h1 {
+    font-size: clamp(20px, 6vw, 32px);
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: clamp(14px, 3.6vw, 16px);
+    text-align: center;
+  }
+
+  /* CTA becomes full-width on narrow screens for easier tapping.
+     If you prefer not to fill the width, set max-width and center it instead. */
+  .cta-btn {
+    width: 100%;
+    max-width: 420px;
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+}
+
+/* ---- Small phones (max-width: 420px) ----
+   - more aggressive stacking and spacing changes
+   - ensure readability and touch targets
+*/
+@media (max-width: 420px) {
+  .about-details {
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .about-img {
+    width: min(94%, 420px);
+    border-radius: 10px;
+    aspect-ratio: 4 / 3; /* slightly taller visual on small screens */
+  }
+
+  .about-text {
+    width: 100%;
+    font-size: clamp(14px, 3.6vw, 16px);
+    text-align: left;
+    padding: 0 6px;
+  }
+
+  .hero h1{
+    font-size: clamp(18px, 7.6vw, 28px);
+  }
+
+  .hero p{
+    font-size: clamp(13px, 4.6vw, 15px);
+  }
+
+  .cta-btn {
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    min-height: 48px; /* slightly larger tap target */
+  }
+}
+
+/* ---- Utility tweaks ---- */
+/* Prevent images from being draggable/selectable on touch */
+.about-img img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Ensure links and interactive elements have large enough hit areas */
+.cta-btn,
+a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.06);
+}
+
+/* If your layout uses long paragraphs, set comfortable line length on wide screens */
+@media (min-width: 1200px) {
+  .about-text {
+    max-width: 68ch; /* keeps readable line-length on very wide screens */
+  }
+}
+
+
